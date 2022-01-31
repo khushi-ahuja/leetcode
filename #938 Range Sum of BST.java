@@ -17,11 +17,15 @@
 class Solution {
     // int ans;
     public int rangeSumBST(TreeNode root, int L, int R) {
-        if (root == null) return 0; // base case.
+        int ans=0; 
+        if (root == null) 
+            return 0; 
         if (root.val < L) // left branch excluded.
-            return rangeSumBST(root.right, L, R); 
-        if (root.val > R) // right branch excluded. 
-            return rangeSumBST(root.left, L, R); 
-        return root.val + rangeSumBST(root.right, L, R) + rangeSumBST(root.left, L, R); 
+            ans+= rangeSumBST(root.right, L, R); 
+        else if (root.val > R) // right branch excluded. 
+            ans+= rangeSumBST(root.left, L, R); 
+        else 
+            ans += root.val + rangeSumBST(root.right, L, R) + rangeSumBST(root.left, L, R); 
+        return ans;
     }
 }
